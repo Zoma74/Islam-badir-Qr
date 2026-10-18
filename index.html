@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صيدلية د/ إسلام بدير</title>
+    <!-- خط القاهرة لدعم اللغة العربية بشكل احترافي -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات (Font Awesome) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            /* الألوان المستوحاة من تصميم الصيدلية */
+            --primary-blue: #08286b; /* لون الخلفية الأزرق الغامق */
+            --accent-yellow: #ffce00; /* اللون الأصفر للكلمات المميزة */
+            --accent-green: #4aa843; /* اللون الأخضر */
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            margin: 0;
+            padding: 20px 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: radial-gradient(circle at top, #11388b 0%, var(--primary-blue) 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+        }
+
+        /* تنسيق اللوجو */
+        .logo-container {
+            width: 130px;
+            height: 130px;
+            background-color: var(--white);
+            border-radius: 50%;
+            padding: 10px;
+            margin: 0 auto 15px auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .logo-container img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        h1 {
+            color: var(--accent-yellow);
+            margin: 10px 0 5px 0;
+            font-size: 26px;
+            font-weight: 900;
+        }
+
+        .management {
+            font-size: 15px;
+            color: #d1d5db;
+            margin-bottom: 25px;
+            font-weight: 700;
+        }
+
+        .info-card {
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .info-item {
+            margin: 10px 0;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .info-item i {
+            color: var(--accent-yellow);
+            font-size: 18px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        /* تنسيق الزراير الأساسية */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px;
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--primary-blue);
+            background-color: var(--white);
+            font-weight: 700;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .btn i {
+            font-size: 20px;
+        }
+
+        /* ألوان مخصصة لكل زرار */
+        .btn-call { background-color: var(--accent-yellow); color: var(--primary-blue); }
+        .btn-whatsapp { background-color: #25D366; color: white; }
+        .btn-location { background-color: #EA4335; color: white; }
+        .btn-facebook { background-color: #1877F2; color: white; }
+        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; }
+        .btn-tiktok { background-color: #000000; color: white; }
+        .btn-instapay { background-color: #6C2B85; color: white; } /* لون مقارب لإنستاباي */
+        .btn-vodafone { background-color: #E60000; color: white; }
+
+        .section-title {
+            color: var(--accent-yellow);
+            font-size: 20px;
+            margin-bottom: 15px;
+            font-weight: 900;
+        }
+
+        /* قسم الخدمات */
+        .services-card {
+            text-align: right;
+            background-color: rgba(255, 255, 255, 0.08);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.15);
+            margin-bottom: 20px;
+        }
+
+        .services-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .services-card li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 14.5px;
+            line-height: 1.6;
+            font-weight: 700;
+        }
+
+        .services-card li i {
+            color: var(--accent-green);
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            padding-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- اللوجو (قم بتغيير كلمة logo.jpg لاسم صورة اللوجو الخاصة بك عند رفعها) -->
+        <div class="logo-container">
+            <img src="logo.jpg" alt="لوجو صيدلية د/ إسلام بدير">
+        </div>
+
+        <h1>صيدلية د/ إسلام بدير</h1>
+        <div class="management">
+            إدارة: د/ محمد حازم القصبي و د/ أحمد إيهاب القصبي
+        </div>
+
+        <!-- بيانات التواصل السريعة -->
+        <div class="info-card">
+            <div class="info-item">
+                <i class="fa-solid fa-clock"></i>
+                <span>مواعيد العمل: ٢٤ ساعة طوال الأسبوع</span>
+            </div>
+            <div class="info-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>شربين - شارع الثانوية بنات - بجوار مقلة هجرس</span>
+            </div>
+        </div>
+
+        <!-- أزرار التواصل والسوشيال ميديا -->
+        <div class="links-grid">
+            <a href="tel:01006033627" class="btn btn-call">
+                <i class="fa-solid fa-phone"></i>
+                اتصال الآن (01006033627)
+            </a>
+            <a href="https://wa.me/message/6J622G4KYHAGD1" class="btn btn-whatsapp" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i>
+                تواصل معنا على واتساب
+            </a>
+            <a href="https://maps.app.goo.gl/gbkVy2sDsATi4ujC6" class="btn btn-location" target="_blank">
+                <i class="fa-solid fa-map-location-dot"></i>
+                موقع الصيدلية على الخريطة
+            </a>
+            <a href="https://www.facebook.com/share/1Ghp3WgPwN/" class="btn btn-facebook" target="_blank">
+                <i class="fa-brands fa-facebook-f"></i>
+                صفحة الفيسبوك
+            </a>
+            <a href="https://www.instagram.com/islambdiarpharmacy?igsi=YjBnZTAxYWtocnI=" class="btn btn-instagram" target="_blank">
+                <i class="fa-brands fa-instagram"></i>
+                حساب إنستجرام
+            </a>
+            <a href="https://www.tiktok.com/@islam.beder.pharm?_r=1&_t=ZS-9AfdK82wHjO" class="btn btn-tiktok" target="_blank">
+                <i class="fa-brands fa-tiktok"></i>
+                حساب تيك توك
+            </a>
+        </div>
+
+        <!-- الدفع الإلكتروني -->
+        <div class="section-title">طرق الدفع الإلكتروني</div>
+        <div class="links-grid">
+            <a href="https://ipn.eg/S/zoma744/instapay/1SmCJ1" class="btn btn-instapay" target="_blank">
+                <i class="fa-solid fa-money-bill-transfer"></i>
+                الدفع عبر إنستاباي (InstaPay)
+            </a>
+            <a href="https://vf.eg/vfcash?id=mt&qrId=OiO44p" class="btn btn-vodafone" target="_blank">
+                <i class="fa-solid fa-mobile-screen"></i>
+                الدفع عبر فودافون كاش
+            </a>
+        </div>
+
+        <!-- خدمات الصيدلية -->
+        <div class="section-title" style="margin-top: 15px;">خدماتنا</div>
+        <div class="services-card">
+            <ul>
+                <li><i class="fa-solid fa-motorcycle"></i> متوفر خدمة التوصيل داخل شربين وجميع قرى شربين.</li>
+                <li><i class="fa-solid fa-heart-pulse"></i> متوفر خدمة قياس السكر والضغط وقياس InBody.</li>
+                <li><i class="fa-solid fa-user-doctor"></i> تيم كامل من الصيادلة المتخصصين للرد على جميع الاستشارات.</li>
+                <li><i class="fa-solid fa-prescription-bottle-medical"></i> متوفر تجهيز الروشتات وتوفير جميع نواقص السوق.</li>
+                <li><i class="fa-solid fa-notes-medical"></i> متابعة الحالات المزمنة وتجهيز العلاج الشهري.</li>
+            </ul>
+        </div>
+
+        <!-- الفوتر -->
+        <div class="footer">
+            Designed by Dr. Mohammed Hazem Alkasaby &copy; 2026
+        </div>
+
+    </div>
+
+</body>
+</html>
