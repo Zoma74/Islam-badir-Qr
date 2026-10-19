@@ -4,379 +4,404 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صيدلية د/ إسلام بدير</title>
-    <!-- خط القاهرة -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
-    <!-- مكتبة الأيقونات -->
+    <!-- خط الجي-إس-إس الجديد للمسة عصرية -->
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات (Font Awesome) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            --primary-blue: #08286b;
-            --accent-yellow: #ffce00;
-            --accent-green: #4aa843;
-            --white: #ffffff;
-            --glass-bg: rgba(255, 255, 255, 0.07);
-            --glass-border: rgba(255, 255, 255, 0.15);
+            --bg-color: #0b1121; /* أزرق ليلي عميق جداً */
+            --card-bg: #151f38; /* لون الكروت */
+            --primary: #ffce00; /* الأصفر المميز للصيدلية */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
         }
 
-        /* أنيميشن الخلفية */
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        /* حركة العناصر عند فتح الصفحة */
-        @keyframes slideUpFade {
-            from { transform: translateY(40px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        /* حركة الأشكال العائمة في الخلفية */
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(180deg); }
-            100% { transform: translateY(0px) rotate(360deg); }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: 'Cairo', sans-serif;
-            margin: 0;
-            padding: 20px 15px;
+            font-family: 'Tajawal', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
             min-height: 100vh;
-            color: var(--white);
-            /* الخلفية المتحركة */
-            background: linear-gradient(-45deg, #041436, #08286b, #0a3a99, #051c4d);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-            position: relative;
-            overflow-x: hidden;
+            padding: 20px 15px 40px;
+            /* خلفية بشبكة عصرية خفيفة */
+            background-image: radial-gradient(#1e293b 1px, transparent 1px);
+            background-size: 30px 30px;
         }
 
-        /* الأشكال العائمة في الخلفية */
-        .shape {
-            position: absolute;
-            filter: blur(40px);
-            z-index: 0;
-            opacity: 0.5;
-            animation: float 8s ease-in-out infinite;
-        }
-        .shape-1 {
-            width: 150px; height: 150px;
-            background: var(--accent-green);
-            top: 5%; right: -20px;
-        }
-        .shape-2 {
-            width: 200px; height: 200px;
-            background: #1877F2;
-            bottom: 20%; left: -50px;
-            animation-delay: -4s;
-        }
-        .shape-3 {
-            width: 120px; height: 120px;
-            background: var(--accent-yellow);
-            top: 40%; right: 20%;
-            animation-delay: -2s;
-        }
-
-        .container {
-            max-width: 450px;
+        .app-container {
+            max-width: 480px;
             width: 100%;
+        }
+
+        /* --- الهيدر واللوجو --- */
+        .header {
             text-align: center;
+            margin-bottom: 30px;
             position: relative;
-            z-index: 1; /* عشان يكون فوق الأشكال العائمة */
         }
 
-        /* تطبيق أنيميشن الدخول على كل عناصر الكونتينر */
-        .container > * {
-            opacity: 0;
-            animation: slideUpFade 0.8s ease forwards;
+        .logo-wrap {
+            width: 110px;
+            height: 110px;
+            margin: 0 auto 15px;
+            background: #fff;
+            border-radius: 35px; /* شكل مربع بحواف دائرية زي أيقونات التطبيقات */
+            padding: 10px;
+            box-shadow: 0 15px 35px rgba(255, 206, 0, 0.15), 
+                        inset 0 0 0 4px var(--primary);
+            position: relative;
         }
 
-        /* تأخير ظهور العناصر بالتدريج */
-        .logo-container { animation-delay: 0.1s; }
-        h1 { animation-delay: 0.2s; }
-        .management { animation-delay: 0.3s; }
-        .info-card { animation-delay: 0.4s; }
-        .section-title { animation-delay: 0.5s; }
-        .links-grid { animation-delay: 0.6s; }
-        .services-card { animation-delay: 0.8s; }
-        .footer { animation-delay: 1s; }
-
-        /* تنسيق اللوجو */
-        .logo-container {
-            width: 120px;
-            height: 120px;
-            background-color: var(--white);
-            border-radius: 50%;
-            padding: 8px;
-            margin: 0 auto 15px auto;
-            box-shadow: 0 0 25px rgba(255, 206, 0, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            border: 3px solid rgba(255,255,255,0.2);
-        }
-
-        .logo-container img {
-            max-width: 100%;
-            max-height: 100%;
+        .logo-wrap img {
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            border-radius: 50%;
+            border-radius: 25px;
         }
 
-        h1 {
-            color: var(--accent-yellow);
-            margin: 10px 0 5px 0;
-            font-size: 28px;
+        .header h1 {
+            font-size: 26px;
             font-weight: 900;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            color: var(--text-main);
+            margin-bottom: 5px;
+        }
+        
+        .header h1 span {
+            color: var(--primary);
         }
 
-        .management {
-            font-size: 15px;
-            color: #e0e6ed;
-            margin-bottom: 25px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
+        .header p {
+            font-size: 14px;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
-        /* تنسيق الزجاج (Glassmorphism) للكروت */
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+        /* --- كارت المعلومات السريعة --- */
+        .status-card {
+            background: linear-gradient(135deg, #1e293b 0%, #151f38 100%);
             border-radius: 20px;
-            padding: 18px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 25px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
 
-        .info-item {
-            margin: 12px 0;
-            font-size: 14.5px;
+        .status-item {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
+            gap: 10px;
+            font-size: 13px;
+            font-weight: 700;
         }
 
-        .info-item i {
-            color: var(--accent-yellow);
-            font-size: 20px;
-            filter: drop-shadow(0 0 5px rgba(255,206,0,0.4));
+        .status-item i {
+            color: #10b981; /* لون أخضر فاقع يعبر عن العمل 24 ساعة */
+            font-size: 16px;
         }
 
-        .links-grid {
+        /* --- شبكة الأفعال السريعة (تطبيق مصغر) --- */
+        .quick-actions {
             display: grid;
-            grid-template-columns: 1fr;
-            gap: 16px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
             margin-bottom: 30px;
         }
 
-        /* تنسيق الزراير بخلفية زجاجية مضيئة */
-        .btn {
+        .action-btn {
+            background: var(--card-bg);
+            border-radius: 22px;
+            padding: 20px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .action-btn:hover {
+            transform: translateY(-5px);
+            background: #1c2746;
+        }
+
+        /* تنسيق أيقونات الأفعال السريعة كدوائر متدرجة */
+        .icon-circle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            color: #fff;
+            box-shadow: 0 10px 20px -5px rgba(0,0,0,0.5);
+        }
+
+        .action-text {
+            color: var(--text-main);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        /* تلوين دوائر الأيقونات */
+        .bg-call { background: linear-gradient(135deg, #f59e0b, #d97706); }
+        .bg-whatsapp { background: linear-gradient(135deg, #34d399, #059669); }
+        .bg-map { background: linear-gradient(135deg, #f87171, #dc2626); }
+
+        /* حركة النبض لزر الاتصال والواتساب */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        @keyframes pulseCall {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+        .pulse-wa .icon-circle { animation: pulse 2s infinite; }
+        .pulse-call .icon-circle { animation: pulseCall 2.5s infinite; }
+
+
+        /* --- العناوين الفرعية --- */
+        .section-header {
             display: flex;
             align-items: center;
-            justify-content: center;
+            margin-bottom: 15px;
+            gap: 10px;
+        }
+        .section-header h2 {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--text-main);
+        }
+        .section-header .line {
+            flex-grow: 1;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.1), transparent);
+        }
+
+        /* --- القوائم الطولية (السوشيال والدفع) --- */
+        .list-container {
+            display: flex;
+            flex-direction: column;
             gap: 12px;
-            padding: 16px;
-            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .list-item {
+            display: flex;
+            align-items: center;
+            background: var(--card-bg);
+            padding: 12px 15px;
+            border-radius: 18px;
             text-decoration: none;
-            color: var(--white);
-            font-weight: 700;
-            font-size: 16px;
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.02);
             position: relative;
             overflow: hidden;
         }
 
-        /* تأثير اللمعان عند مرور الماوس */
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 50%; height: 100%;
-            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-            transform: skewX(-25deg);
-            transition: all 0.5s ease;
+        .list-item:hover {
+            transform: translateX(-5px);
+            background: #1c2746;
+            border-color: rgba(255,206,0,0.3);
         }
 
-        .btn:hover::after {
-            left: 150%;
-        }
-
-        .btn:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .btn i {
+        .list-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             font-size: 22px;
+            color: #fff;
+            margin-left: 15px; /* لأن الاتجاه RTL */
+            box-shadow: 0 5px 10px rgba(0,0,0,0.2);
         }
 
-        /* ألوان حدود وأيقونات الزراير لتتماشى مع الستايل الزجاجي */
-        .btn-call { border-left: 4px solid var(--accent-yellow); color: var(--accent-yellow); }
-        .btn-whatsapp { border-left: 4px solid #25D366; color: #25D366; }
-        .btn-location { border-left: 4px solid #EA4335; color: #EA4335; }
-        .btn-facebook { border-left: 4px solid #1877F2; color: #1877F2; }
-        .btn-instagram { border-left: 4px solid #E1306C; color: #E1306C; }
-        .btn-tiktok { border-left: 4px solid #ffffff; }
-        .btn-instapay { border-left: 4px solid #6C2B85; color: #d482f2; } 
-        .btn-vodafone { border-left: 4px solid #E60000; color: #ff6b6b; }
-
-        /* تغيير لون النص للزراير الأساسية لجعلها أوضح */
-        .btn span { color: var(--white); }
-
-        .section-title {
-            color: var(--white);
-            font-size: 22px;
-            margin: 25px 0 15px 0;
-            font-weight: 900;
-            display: inline-block;
-            position: relative;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -5px; left: 50%;
-            transform: translateX(-50%);
-            width: 50px; height: 3px;
-            background: var(--accent-yellow);
-            border-radius: 5px;
+        .list-text {
+            color: var(--text-main);
+            font-size: 15px;
+            font-weight: 700;
+            flex-grow: 1;
         }
 
-        .services-card {
-            text-align: right;
+        .list-arrow {
+            color: var(--text-muted);
+            font-size: 14px;
         }
 
-        .services-card li {
-            margin-bottom: 15px;
+        /* ألوان أيقونات القوائم */
+        .bg-fb { background: linear-gradient(135deg, #3b5998, #192f6a); }
+        .bg-ig { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .bg-tk { background: linear-gradient(135deg, #252525, #000000); }
+        .bg-ipn { background: linear-gradient(135deg, #6C2B85, #4a195e); }
+        .bg-vf { background: linear-gradient(135deg, #e60000, #990000); }
+
+        /* --- الخدمات --- */
+        .services-wrapper {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .service-row {
             display: flex;
             align-items: flex-start;
-            gap: 12px;
-            font-size: 15px;
-            line-height: 1.7;
-            font-weight: 600;
-            padding-bottom: 10px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            gap: 15px;
+            margin-bottom: 18px;
         }
-        .services-card li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+        .service-row:last-child { margin-bottom: 0; }
 
-        .services-card li i {
-            color: var(--accent-green);
-            margin-top: 6px;
-            font-size: 18px;
-            background: rgba(74, 168, 67, 0.1);
-            padding: 8px;
-            border-radius: 50%;
+        .service-icon {
+            background: rgba(255, 206, 0, 0.1);
+            color: var(--primary);
+            width: 35px;
+            height: 35px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 16px;
+            flex-shrink: 0;
         }
 
-        .footer {
-            margin-top: 30px;
-            font-size: 13px;
-            color: rgba(255,255,255,0.5);
-            padding-bottom: 20px;
+        .service-desc {
+            font-size: 14.5px;
             font-weight: 600;
+            line-height: 1.6;
+            color: #cbd5e1;
+            margin-top: 5px;
         }
+
     </style>
 </head>
 <body>
 
-    <!-- الأشكال العائمة للخلفية -->
-    <div class="shape shape-1"></div>
-    <div class="shape shape-2"></div>
-    <div class="shape shape-3"></div>
-
-    <div class="container">
+    <div class="app-container">
         
-        <div class="logo-container">
-            <img src="logo.jpg" alt="لوجو صيدلية د/ إسلام بدير">
+        <!-- الهيدر واللوجو -->
+        <div class="header">
+            <div class="logo-wrap">
+                <img src="logo.jpg" alt="لوجو صيدلية د/ إسلام بدير">
+            </div>
+            <h1>صيدلية <span>إسلام بدير</span></h1>
+            <p>إدارة: د/ محمد حازم القصبي و د/ أحمد إيهاب القصبي</p>
         </div>
 
-        <h1>صيدلية د/ إسلام بدير</h1>
-        <div class="management">
-            إدارة: د/ محمد حازم القصبي و د/ أحمد إيهاب القصبي
-        </div>
-
-        <!-- بيانات التواصل -->
-        <div class="glass-card info-card">
-            <div class="info-item">
+        <!-- كارت شريط الحالة -->
+        <div class="status-card">
+            <div class="status-item">
                 <i class="fa-solid fa-clock"></i>
-                <span>مواعيد العمل: ٢٤ ساعة طوال الأسبوع</span>
+                مفتوح ٢٤ ساعة
             </div>
-            <div class="info-item">
-                <i class="fa-solid fa-location-dot"></i>
-                <span>شربين - شارع الثانوية بنات - بجوار مقلة هجرس</span>
+            <div class="status-item">
+                <i class="fa-solid fa-location-dot" style="color: #ef4444;"></i>
+                شربين - شارع الثانوية بنات
             </div>
         </div>
 
-        <!-- الروابط -->
-        <div class="links-grid">
-            <a href="tel:01006033627" class="btn btn-call">
-                <i class="fa-solid fa-phone"></i>
-                <span>اتصال الآن (01006033627)</span>
+        <!-- الأفعال السريعة (شكل التطبيقات) -->
+        <div class="quick-actions">
+            <a href="tel:01006033627" class="action-btn pulse-call">
+                <div class="icon-circle bg-call"><i class="fa-solid fa-phone-volume"></i></div>
+                <span class="action-text">اتصال</span>
             </a>
-            <a href="https://wa.me/message/6J622G4KYHAGD1" class="btn btn-whatsapp" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i>
-                <span>تواصل معنا على واتساب</span>
+            <a href="https://wa.me/message/6J622G4KYHAGD1" target="_blank" class="action-btn pulse-wa">
+                <div class="icon-circle bg-whatsapp"><i class="fa-brands fa-whatsapp"></i></div>
+                <span class="action-text">واتساب</span>
             </a>
-            <a href="https://maps.app.goo.gl/gbkVy2sDsATi4ujC6" class="btn btn-location" target="_blank">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <span>موقع الصيدلية على الخريطة</span>
-            </a>
-            <a href="https://www.facebook.com/share/1Ghp3WgPwN/" class="btn btn-facebook" target="_blank">
-                <i class="fa-brands fa-facebook-f"></i>
-                <span>صفحة الفيسبوك</span>
-            </a>
-            <a href="https://www.instagram.com/islambdiarpharmacy?igsi=YjBnZTAxYWtocnI=" class="btn btn-instagram" target="_blank">
-                <i class="fa-brands fa-instagram"></i>
-                <span>حساب إنستجرام</span>
-            </a>
-            <a href="https://www.tiktok.com/@islam.beder.pharm?_r=1&_t=ZS-9AfdK82wHjO" class="btn btn-tiktok" target="_blank">
-                <i class="fa-brands fa-tiktok"></i>
-                <span>حساب تيك توك</span>
+            <a href="https://maps.app.goo.gl/gbkVy2sDsATi4ujC6" target="_blank" class="action-btn">
+                <div class="icon-circle bg-map"><i class="fa-solid fa-map-location-dot"></i></div>
+                <span class="action-text">الموقع</span>
             </a>
         </div>
 
-        <!-- الدفع الإلكتروني -->
-        <div class="section-title">طرق الدفع الإلكتروني</div>
-        <div class="links-grid" style="margin-top: 20px;">
-            <a href="https://ipn.eg/S/zoma744/instapay/1SmCJ1" class="btn btn-instapay" target="_blank">
-                <i class="fa-solid fa-money-bill-transfer"></i>
-                <span>الدفع عبر إنستاباي (InstaPay)</span>
+        <!-- السوشيال ميديا -->
+        <div class="section-header">
+            <h2>تواصل معنا</h2>
+            <div class="line"></div>
+        </div>
+        <div class="list-container">
+            <a href="https://www.facebook.com/share/1Ghp3WgPwN/" target="_blank" class="list-item">
+                <div class="list-icon bg-fb"><i class="fa-brands fa-facebook-f"></i></div>
+                <span class="list-text">صفحة الفيسبوك</span>
+                <i class="fa-solid fa-chevron-left list-arrow"></i>
             </a>
-            <a href="https://vf.eg/vfcash?id=mt&qrId=OiO44p" class="btn btn-vodafone" target="_blank">
-                <i class="fa-solid fa-mobile-screen"></i>
-                <span>الدفع عبر فودافون كاش</span>
+            <a href="https://www.instagram.com/islambdiarpharmacy?igsi=YjBnZTAxYWtocnI=" target="_blank" class="list-item">
+                <div class="list-icon bg-ig"><i class="fa-brands fa-instagram"></i></div>
+                <span class="list-text">حساب إنستجرام</span>
+                <i class="fa-solid fa-chevron-left list-arrow"></i>
+            </a>
+            <a href="https://www.tiktok.com/@islam.beder.pharm?_r=1&_t=ZS-9AfdK82wHjO" target="_blank" class="list-item">
+                <div class="list-icon bg-tk"><i class="fa-brands fa-tiktok"></i></div>
+                <span class="list-text">حساب تيك توك</span>
+                <i class="fa-solid fa-chevron-left list-arrow"></i>
+            </a>
+        </div>
+
+        <!-- بوابات الدفع -->
+        <div class="section-header">
+            <h2>طرق الدفع الإلكتروني</h2>
+            <div class="line"></div>
+        </div>
+        <div class="list-container">
+            <a href="https://ipn.eg/S/zoma744/instapay/1SmCJ1" target="_blank" class="list-item">
+                <div class="list-icon bg-ipn"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                <span class="list-text">الدفع عبر إنستاباي (InstaPay)</span>
+                <i class="fa-solid fa-chevron-left list-arrow"></i>
+            </a>
+            <a href="https://vf.eg/vfcash?id=mt&qrId=OiO44p" target="_blank" class="list-item">
+                <div class="list-icon bg-vf"><i class="fa-solid fa-mobile-screen"></i></div>
+                <span class="list-text">الدفع عبر فودافون كاش</span>
+                <i class="fa-solid fa-chevron-left list-arrow"></i>
             </a>
         </div>
 
         <!-- خدمات الصيدلية -->
-        <div class="section-title">خدماتنا</div>
-        <div class="glass-card services-card" style="margin-top: 20px;">
-            <ul>
-                <li><i class="fa-solid fa-motorcycle"></i> <span>متوفر خدمة التوصيل داخل شربين وجميع قرى شربين.</span></li>
-                <li><i class="fa-solid fa-heart-pulse"></i> <span>متوفر خدمة قياس السكر والضغط وقياس InBody.</span></li>
-                <li><i class="fa-solid fa-user-doctor"></i> <span>تيم كامل من الصيادلة المتخصصين للرد على الاستشارات.</span></li>
-                <li><i class="fa-solid fa-prescription-bottle-medical"></i> <span>تجهيز الروشتات وتوفير جميع نواقص السوق.</span></li>
-                <li><i class="fa-solid fa-notes-medical"></i> <span>متابعة الحالات المزمنة وتجهيز العلاج الشهري.</span></li>
-            </ul>
+        <div class="section-header" style="margin-top: 10px;">
+            <h2>خدمات الصيدلية</h2>
+            <div class="line"></div>
         </div>
-
-        <div class="footer">
-            Designed by Dr. Mohammed Hazem Alkasaby &copy; 2026
+        <div class="services-wrapper">
+            <div class="service-row">
+                <div class="service-icon"><i class="fa-solid fa-motorcycle"></i></div>
+                <div class="service-desc">متوفر خدمة التوصيل داخل شربين وجميع قرى شربين.</div>
+            </div>
+            <div class="service-row">
+                <div class="service-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <div class="service-desc">متوفر خدمة قياس السكر والضغط وقياس InBody.</div>
+            </div>
+            <div class="service-row">
+                <div class="service-icon"><i class="fa-solid fa-user-doctor"></i></div>
+                <div class="service-desc">فريق من الصيادلة المتخصصين للرد على الاستشارات.</div>
+            </div>
+            <div class="service-row">
+                <div class="service-icon"><i class="fa-solid fa-prescription-bottle-medical"></i></div>
+                <div class="service-desc">تجهيز الروشتات وتوفير جميع نواقص السوق.</div>
+            </div>
+            <div class="service-row">
+                <div class="service-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                <div class="service-desc">متابعة الحالات المزمنة وتجهيز العلاج الشهري.</div>
+            </div>
         </div>
 
     </div>
