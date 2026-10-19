@@ -4,191 +4,303 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صيدلية د/ إسلام بدير</title>
-    <!-- خط القاهرة لدعم اللغة العربية بشكل احترافي -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
-    <!-- مكتبة الأيقونات (Font Awesome) -->
+    <!-- خط القاهرة -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!-- مكتبة الأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         :root {
-            /* الألوان المستوحاة من تصميم الصيدلية */
-            --primary-blue: #08286b; /* لون الخلفية الأزرق الغامق */
-            --accent-yellow: #ffce00; /* اللون الأصفر للكلمات المميزة */
-            --accent-green: #4aa843; /* اللون الأخضر */
+            --primary-blue: #08286b;
+            --accent-yellow: #ffce00;
+            --accent-green: #4aa843;
             --white: #ffffff;
+            --glass-bg: rgba(255, 255, 255, 0.07);
+            --glass-border: rgba(255, 255, 255, 0.15);
+        }
+
+        /* أنيميشن الخلفية */
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* حركة العناصر عند فتح الصفحة */
+        @keyframes slideUpFade {
+            from { transform: translateY(40px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* حركة الأشكال العائمة في الخلفية */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+            100% { transform: translateY(0px) rotate(360deg); }
         }
 
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: var(--primary-blue);
-            color: var(--white);
             margin: 0;
             padding: 20px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-image: radial-gradient(circle at top, #11388b 0%, var(--primary-blue) 100%);
             min-height: 100vh;
+            color: var(--white);
+            /* الخلفية المتحركة */
+            background: linear-gradient(-45deg, #041436, #08286b, #0a3a99, #051c4d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* الأشكال العائمة في الخلفية */
+        .shape {
+            position: absolute;
+            filter: blur(40px);
+            z-index: 0;
+            opacity: 0.5;
+            animation: float 8s ease-in-out infinite;
+        }
+        .shape-1 {
+            width: 150px; height: 150px;
+            background: var(--accent-green);
+            top: 5%; right: -20px;
+        }
+        .shape-2 {
+            width: 200px; height: 200px;
+            background: #1877F2;
+            bottom: 20%; left: -50px;
+            animation-delay: -4s;
+        }
+        .shape-3 {
+            width: 120px; height: 120px;
+            background: var(--accent-yellow);
+            top: 40%; right: 20%;
+            animation-delay: -2s;
         }
 
         .container {
             max-width: 450px;
             width: 100%;
             text-align: center;
+            position: relative;
+            z-index: 1; /* عشان يكون فوق الأشكال العائمة */
         }
+
+        /* تطبيق أنيميشن الدخول على كل عناصر الكونتينر */
+        .container > * {
+            opacity: 0;
+            animation: slideUpFade 0.8s ease forwards;
+        }
+
+        /* تأخير ظهور العناصر بالتدريج */
+        .logo-container { animation-delay: 0.1s; }
+        h1 { animation-delay: 0.2s; }
+        .management { animation-delay: 0.3s; }
+        .info-card { animation-delay: 0.4s; }
+        .section-title { animation-delay: 0.5s; }
+        .links-grid { animation-delay: 0.6s; }
+        .services-card { animation-delay: 0.8s; }
+        .footer { animation-delay: 1s; }
 
         /* تنسيق اللوجو */
         .logo-container {
-            width: 130px;
-            height: 130px;
+            width: 120px;
+            height: 120px;
             background-color: var(--white);
             border-radius: 50%;
-            padding: 10px;
+            padding: 8px;
             margin: 0 auto 15px auto;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 0 25px rgba(255, 206, 0, 0.3);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
+            border: 3px solid rgba(255,255,255,0.2);
         }
 
         .logo-container img {
             max-width: 100%;
             max-height: 100%;
             object-fit: contain;
+            border-radius: 50%;
         }
 
         h1 {
             color: var(--accent-yellow);
             margin: 10px 0 5px 0;
-            font-size: 26px;
+            font-size: 28px;
             font-weight: 900;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .management {
             font-size: 15px;
-            color: #d1d5db;
+            color: #e0e6ed;
             margin-bottom: 25px;
-            font-weight: 700;
+            font-weight: 600;
+            letter-spacing: 0.5px;
         }
 
-        .info-card {
-            background-color: rgba(255, 255, 255, 0.08);
-            border-radius: 15px;
-            padding: 15px;
+        /* تنسيق الزجاج (Glassmorphism) للكروت */
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 18px;
             margin-bottom: 25px;
-            border: 1px solid rgba(255,255,255,0.15);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
         }
 
         .info-item {
-            margin: 10px 0;
-            font-size: 14px;
+            margin: 12px 0;
+            font-size: 14.5px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 12px;
         }
 
         .info-item i {
             color: var(--accent-yellow);
-            font-size: 18px;
+            font-size: 20px;
+            filter: drop-shadow(0 0 5px rgba(255,206,0,0.4));
         }
 
         .links-grid {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
+            gap: 16px;
+            margin-bottom: 30px;
         }
 
-        /* تنسيق الزراير الأساسية */
+        /* تنسيق الزراير بخلفية زجاجية مضيئة */
         .btn {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 14px;
-            border-radius: 50px;
+            padding: 16px;
+            border-radius: 16px;
             text-decoration: none;
-            color: var(--primary-blue);
-            background-color: var(--white);
+            color: var(--white);
             font-weight: 700;
             font-size: 16px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* تأثير اللمعان عند مرور الماوس */
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-25deg);
+            transition: all 0.5s ease;
+        }
+
+        .btn:hover::after {
+            left: 150%;
         }
 
         .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
 
         .btn i {
-            font-size: 20px;
+            font-size: 22px;
         }
 
-        /* ألوان مخصصة لكل زرار */
-        .btn-call { background-color: var(--accent-yellow); color: var(--primary-blue); }
-        .btn-whatsapp { background-color: #25D366; color: white; }
-        .btn-location { background-color: #EA4335; color: white; }
-        .btn-facebook { background-color: #1877F2; color: white; }
-        .btn-instagram { background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); color: white; }
-        .btn-tiktok { background-color: #000000; color: white; }
-        .btn-instapay { background-color: #6C2B85; color: white; } /* لون مقارب لإنستاباي */
-        .btn-vodafone { background-color: #E60000; color: white; }
+        /* ألوان حدود وأيقونات الزراير لتتماشى مع الستايل الزجاجي */
+        .btn-call { border-left: 4px solid var(--accent-yellow); color: var(--accent-yellow); }
+        .btn-whatsapp { border-left: 4px solid #25D366; color: #25D366; }
+        .btn-location { border-left: 4px solid #EA4335; color: #EA4335; }
+        .btn-facebook { border-left: 4px solid #1877F2; color: #1877F2; }
+        .btn-instagram { border-left: 4px solid #E1306C; color: #E1306C; }
+        .btn-tiktok { border-left: 4px solid #ffffff; }
+        .btn-instapay { border-left: 4px solid #6C2B85; color: #d482f2; } 
+        .btn-vodafone { border-left: 4px solid #E60000; color: #ff6b6b; }
+
+        /* تغيير لون النص للزراير الأساسية لجعلها أوضح */
+        .btn span { color: var(--white); }
 
         .section-title {
-            color: var(--accent-yellow);
-            font-size: 20px;
-            margin-bottom: 15px;
+            color: var(--white);
+            font-size: 22px;
+            margin: 25px 0 15px 0;
             font-weight: 900;
+            display: inline-block;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 50%;
+            transform: translateX(-50%);
+            width: 50px; height: 3px;
+            background: var(--accent-yellow);
+            border-radius: 5px;
         }
 
-        /* قسم الخدمات */
         .services-card {
             text-align: right;
-            background-color: rgba(255, 255, 255, 0.08);
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.15);
-            margin-bottom: 20px;
-        }
-
-        .services-card ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
         }
 
         .services-card li {
-            margin-bottom: 12px;
+            margin-bottom: 15px;
             display: flex;
             align-items: flex-start;
-            gap: 10px;
-            font-size: 14.5px;
-            line-height: 1.6;
-            font-weight: 700;
+            gap: 12px;
+            font-size: 15px;
+            line-height: 1.7;
+            font-weight: 600;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+        .services-card li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
 
         .services-card li i {
             color: var(--accent-green);
-            margin-top: 5px;
-            font-size: 16px;
+            margin-top: 6px;
+            font-size: 18px;
+            background: rgba(74, 168, 67, 0.1);
+            padding: 8px;
+            border-radius: 50%;
         }
 
         .footer {
-            margin-top: 20px;
+            margin-top: 30px;
             font-size: 13px;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.5);
             padding-bottom: 20px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
+    <!-- الأشكال العائمة للخلفية -->
+    <div class="shape shape-1"></div>
+    <div class="shape shape-2"></div>
+    <div class="shape shape-3"></div>
+
     <div class="container">
         
-        <!-- اللوجو (قم بتغيير كلمة logo.jpg لاسم صورة اللوجو الخاصة بك عند رفعها) -->
         <div class="logo-container">
             <img src="logo.jpg" alt="لوجو صيدلية د/ إسلام بدير">
         </div>
@@ -198,8 +310,8 @@
             إدارة: د/ محمد حازم القصبي و د/ أحمد إيهاب القصبي
         </div>
 
-        <!-- بيانات التواصل السريعة -->
-        <div class="info-card">
+        <!-- بيانات التواصل -->
+        <div class="glass-card info-card">
             <div class="info-item">
                 <i class="fa-solid fa-clock"></i>
                 <span>مواعيد العمل: ٢٤ ساعة طوال الأسبوع</span>
@@ -210,60 +322,59 @@
             </div>
         </div>
 
-        <!-- أزرار التواصل والسوشيال ميديا -->
+        <!-- الروابط -->
         <div class="links-grid">
             <a href="tel:01006033627" class="btn btn-call">
                 <i class="fa-solid fa-phone"></i>
-                اتصال الآن (01006033627)
+                <span>اتصال الآن (01006033627)</span>
             </a>
             <a href="https://wa.me/message/6J622G4KYHAGD1" class="btn btn-whatsapp" target="_blank">
                 <i class="fa-brands fa-whatsapp"></i>
-                تواصل معنا على واتساب
+                <span>تواصل معنا على واتساب</span>
             </a>
             <a href="https://maps.app.goo.gl/gbkVy2sDsATi4ujC6" class="btn btn-location" target="_blank">
                 <i class="fa-solid fa-map-location-dot"></i>
-                موقع الصيدلية على الخريطة
+                <span>موقع الصيدلية على الخريطة</span>
             </a>
             <a href="https://www.facebook.com/share/1Ghp3WgPwN/" class="btn btn-facebook" target="_blank">
                 <i class="fa-brands fa-facebook-f"></i>
-                صفحة الفيسبوك
+                <span>صفحة الفيسبوك</span>
             </a>
             <a href="https://www.instagram.com/islambdiarpharmacy?igsi=YjBnZTAxYWtocnI=" class="btn btn-instagram" target="_blank">
                 <i class="fa-brands fa-instagram"></i>
-                حساب إنستجرام
+                <span>حساب إنستجرام</span>
             </a>
             <a href="https://www.tiktok.com/@islam.beder.pharm?_r=1&_t=ZS-9AfdK82wHjO" class="btn btn-tiktok" target="_blank">
                 <i class="fa-brands fa-tiktok"></i>
-                حساب تيك توك
+                <span>حساب تيك توك</span>
             </a>
         </div>
 
         <!-- الدفع الإلكتروني -->
         <div class="section-title">طرق الدفع الإلكتروني</div>
-        <div class="links-grid">
+        <div class="links-grid" style="margin-top: 20px;">
             <a href="https://ipn.eg/S/zoma744/instapay/1SmCJ1" class="btn btn-instapay" target="_blank">
                 <i class="fa-solid fa-money-bill-transfer"></i>
-                الدفع عبر إنستاباي (InstaPay)
+                <span>الدفع عبر إنستاباي (InstaPay)</span>
             </a>
             <a href="https://vf.eg/vfcash?id=mt&qrId=OiO44p" class="btn btn-vodafone" target="_blank">
                 <i class="fa-solid fa-mobile-screen"></i>
-                الدفع عبر فودافون كاش
+                <span>الدفع عبر فودافون كاش</span>
             </a>
         </div>
 
         <!-- خدمات الصيدلية -->
-        <div class="section-title" style="margin-top: 15px;">خدماتنا</div>
-        <div class="services-card">
+        <div class="section-title">خدماتنا</div>
+        <div class="glass-card services-card" style="margin-top: 20px;">
             <ul>
-                <li><i class="fa-solid fa-motorcycle"></i> متوفر خدمة التوصيل داخل شربين وجميع قرى شربين.</li>
-                <li><i class="fa-solid fa-heart-pulse"></i> متوفر خدمة قياس السكر والضغط وقياس InBody.</li>
-                <li><i class="fa-solid fa-user-doctor"></i> تيم كامل من الصيادلة المتخصصين للرد على جميع الاستشارات.</li>
-                <li><i class="fa-solid fa-prescription-bottle-medical"></i> متوفر تجهيز الروشتات وتوفير جميع نواقص السوق.</li>
-                <li><i class="fa-solid fa-notes-medical"></i> متابعة الحالات المزمنة وتجهيز العلاج الشهري.</li>
+                <li><i class="fa-solid fa-motorcycle"></i> <span>متوفر خدمة التوصيل داخل شربين وجميع قرى شربين.</span></li>
+                <li><i class="fa-solid fa-heart-pulse"></i> <span>متوفر خدمة قياس السكر والضغط وقياس InBody.</span></li>
+                <li><i class="fa-solid fa-user-doctor"></i> <span>تيم كامل من الصيادلة المتخصصين للرد على الاستشارات.</span></li>
+                <li><i class="fa-solid fa-prescription-bottle-medical"></i> <span>تجهيز الروشتات وتوفير جميع نواقص السوق.</span></li>
+                <li><i class="fa-solid fa-notes-medical"></i> <span>متابعة الحالات المزمنة وتجهيز العلاج الشهري.</span></li>
             </ul>
         </div>
 
-        <!-- الفوتر -->
         <div class="footer">
             Designed by Dr. Mohammed Hazem Alkasaby &copy; 2026
         </div>
